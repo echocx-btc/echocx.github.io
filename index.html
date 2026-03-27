@@ -52,19 +52,33 @@
 <body class="antialiased font-sans selection:bg-neonBlue selection:text-white">
 
     <nav class="glass-nav fixed w-full z-50 top-0 transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-display font-bold tracking-wider text-white uppercase">
+       <header class="fixed top-0 left-0 w-full z-50 bg-[#06080c]/80 backdrop-blur-sm border-b border-gray-800">
+        <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="text-xl md:text-2xl font-display font-bold text-white tracking-tight">
                 FATKUL MUNIR<span class="text-neonBlue">.</span>
             </a>
+
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-400">
                 <a href="#about" class="hover:text-white transition-colors">About</a>
                 <a href="#analysis" class="hover:text-white transition-colors">Journal</a>
                 <a href="#contact" class="hover:text-white transition-colors">Contact</a>
             </div>
-            <button class="md:hidden text-gray-300 hover:text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+
+            <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
             </button>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0a0d14] border-t border-gray-800 animate-fade-in-down">
+            <div class="px-6 py-4 space-y-3 flex flex-col text-sm font-medium text-gray-400">
+                <a href="#about" class="block py-2.5 hover:text-white transition-colors">About</a>
+                <a href="#analysis" class="block py-2.5 hover:text-white transition-colors">Journal</a>
+                <a href="#contact" class="block py-2.5 hover:text-white transition-colors">Contact</a>
+            </div>
         </div>
+    </header>
     </nav>
 
     <section class="relative pt-40 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
@@ -217,12 +231,12 @@
     <section id="contact" class="py-24 relative z-10">
         <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
                 
-                <a href="mailto:email_anda@gmail.com" class="glow-button flex items-center gap-3 px-6 py-3.5 rounded-xl bg-neonBlue text-white font-medium tracking-wide w-full sm:w-auto transition-all">
+                <a href="fatkulmunir74@.com" class="glow-button flex items-center gap-3 px-6 py-3.5 rounded-xl bg-neonBlue text-white font-medium tracking-wide w-full sm:w-auto transition-all">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                     Email
                 </a>
                 
-                <a href="www.linkedin.com/in/fatkul-munir" target="_blank" class="flex items-center gap-3 px-6 py-3.5 rounded-xl border border-gray-700 bg-cardBg hover:border-[#0A66C2] hover:text-[#0A66C2] text-gray-300 transition-all duration-300 font-medium tracking-wide w-full sm:w-auto">
+                <a href="https://www.linkedin.com/in/fatkul-munir-x-echocx99" target="_blank" class="flex items-center gap-3 px-6 py-3.5 rounded-xl border border-gray-700 bg-cardBg hover:border-[#0A66C2] hover:text-[#0A66C2] text-gray-300 transition-all duration-300 font-medium tracking-wide w-full sm:w-auto">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     LinkedIn
                 </a>
@@ -240,4 +254,25 @@
             </div>
 
 </body>
+<script>
+        // 1. Temukan tombol dan menunya berdasarkan ID yang kita buat tadi
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // 2. Beri fungsi saat tombol diklik
+        menuButton.addEventListener('click', () => {
+            // "Toggel" (tukar) kelas 'hidden' pada menu mobile
+            // Jika ada, akan dihapus (menu muncul). Jika tidak ada, akan ditambahkan (menu hilang).
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 3. (Opsional tapi bagus) Tutup menu otomatis saat salah satu link diklik
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden'); // Selalu sembunyikan setelah klik
+            });
+        });
+    </script>
+</body> </html>
 </html>  
